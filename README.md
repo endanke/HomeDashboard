@@ -12,6 +12,7 @@ The Home Dashboard project was initially created to serve my specific use-case, 
 
 - Current date display (includes the month in Finnish to facilitate language practice)
 - Bus arrival times for two directions in Helsinki using the [DigitTransit Routing API](https://digitransit.fi/en/developers/apis/1-routing-api/)
+- HSL bike availability information at a specific station. Station IDs can be found at: [https://www.hsl.fi/en/citybikes/helsinki](https://www.hsl.fi/en/citybikes/helsinki) by clicking on the "Closest bike stations" button and taking the ID from the URL.
 - Outdoor temperature (The temperature is obtained using the free API provided by [wttr.in](https://wttr.in). However, it's worth mentioning that this API can be occasionally inaccurate in certain cases.)
 
 
@@ -31,6 +32,7 @@ PlatformIO automatically fetches the dependencies of the project, and manages th
 #define STATION_B_ID ...
 #define STATION_A_DIRECTION "..."
 #define STATION_B_DIRECTION "..."
+#define BIKE_STATION_ID ...
 ```
 
 You can request a key for the HSL journey planning API on the website of `digitransit.fi`.

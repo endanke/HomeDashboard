@@ -36,6 +36,7 @@ void Composer::loop() {
     displayText = String(dateTime->dayOfMonth()) + ". " +  dateTime->getFinnishMonthName() + "kuu\n";
     displayText += arrivalText(STATION_A_DIRECTION, dateTime->timestampToMinutes(arrivalStationA)) + "\n";
     displayText += arrivalText(STATION_B_DIRECTION, dateTime->timestampToMinutes(arrivalStationB)) + "\n";
+    displayText += "Bikes available: " + String(bikeStationAvailability) + "\n";
     if (weatherApi->fetched) {
         displayText += "Temperature: " + String(tempC) + "C\n";
         displayText += "Feels like: " + String(feelsLikeC) + "C";
@@ -50,15 +51,22 @@ void Composer::fetchData() {
     feelsLikeC = weatherApi->feelsLikeC;
     tempC = weatherApi->tempC;
 
-    Serial.println("Fetching stations");
-    long newArrival = hslApi->fetchStationArrival(STATION_A_ID); 
+    Serial.println("Fetching bus station data");
+    long newArrival = hslApi->fetchBusStationArrival(STATION_A_ID); 
     if (newArrival > 0) {
         arrivalStationA = newArrival;
     }
-    newArrival = hslApi->fetchStationArrival(STATION_B_ID); 
+    newArrival = hslApi->fetchBusStationArrival(STATION_B_ID); 
     if (newArrival > 0) {
         arrivalStationB = newArrival;
     }
+
+    Serial.println("Fetching bike station data");
+    int newAvailability = hslApi->fetchBikeStationAvailability(BIKE_STATION_ID); 
+    if (newAvailability > 0) {
+        bikeStationAvailability = newAvailability;
+    }
+
     lastTime = millis();
     fetched = true;
 }

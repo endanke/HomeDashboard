@@ -29,6 +29,7 @@ private:
     bool fetched = false;
     long arrivalStationA = 0;
     long arrivalStationB = 0;
+    int bikeStationAvailability = 0;
     int feelsLikeC = 0;
     int tempC = 0;
 };

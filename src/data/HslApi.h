@@ -6,7 +6,8 @@
 class HslApi : public HttpApi
 {
 public:
-    long fetchStationArrival(int id);
+    long fetchBusStationArrival(int id);
+    int fetchBikeStationAvailability(int id);
 };
 
 #endif
